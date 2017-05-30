@@ -45,7 +45,7 @@ namespace StackGameVer2
         {
             string AbilityResult = "Cleric at position " + position;
 
-            for (int i = Range; i > -Range; i--)
+            for (int i = Range; i > -Range + 1; i--)
             {
                 if (i + position >= Allies.Count)
                 {

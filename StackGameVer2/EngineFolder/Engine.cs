@@ -50,16 +50,16 @@ namespace StackGameVer2
             return instance;
         }
 
-        public string NextTurn()
+        public bool NextTurn()
         {
             if (FirstArmy.UnitList.Count == 0 || SecondArmy.UnitList.Count == 0)
             {
-                return "Win\n";
+                return false;
             }
             Fight();
             Abbiliti();
             RemoveTheDead();
-            return "Ready";
+            return true;
         }
 
         private void Fight ()
@@ -128,7 +128,7 @@ namespace StackGameVer2
             int Count = FirstArmyCount > SecondArmyCount ? FirstArmyCount : SecondArmyCount;
             IAbility UnitWithAbility;
 
-            for (int i = 0; i < Count; i++)
+            for (int i = 1; i < Count; i++)
             {
                 if (i < FirstArmyCount)
                 {

@@ -20,7 +20,7 @@ namespace StackGameVer2
 
         public int Initiative { get; private set; } = 4;
 
-        public int MaxHealth { get; private set; } = 16;
+        public int MaxHealth { get; private set; } = 15;
 
         public string Name { get; private set; } = "Infantry Unit";
 

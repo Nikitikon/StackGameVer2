@@ -15,13 +15,10 @@ namespace StackGameVer2
             F.CreateArmy();
             S.CreateArmy();
             Engine E = Engine.getInstance(F, S);
-            string U = string.Empty;
 
-            while (!U.Equals("e"))
+            while (E.NextTurn())
             {
-                Console.WriteLine("Введи: ");
-                U = Console.ReadLine();
-                Console.WriteLine(E.NextTurn());
+
             }
         }
     }

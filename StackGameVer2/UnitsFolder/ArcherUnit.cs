@@ -44,10 +44,10 @@ namespace StackGameVer2
         public string DoAbility(List<IUnit> Allies, List<IUnit> Enemies, int position)
         {
             string AbilityResult = "Archer at position " + position;
-            int AlliesRange = Range - position + 1;
-            int EnemiesRange = Range - AlliesRange;
+            int EnemiesRange = Math.Abs(Range - position);
+            int AlliesRange = position;
 
-            if (AlliesRange / Range > 0.5)
+            if ((double)AlliesRange / Range >= 0.5)
             {
                 AbilityResult += " did not shoot.";
                 return AbilityResult;
@@ -56,23 +56,23 @@ namespace StackGameVer2
             Random RandomRange = new Random();
             int DamageRange = RandomRange.Next(0, Range + 1);
 
+            if (DamageRange == 0)
+            {
+                AbilityResult += " missed";
+                return AbilityResult;
+            }
+
             if (DamageRange > AlliesRange)
             {
-                Enemies[EnemiesRange].GetHit(AbilityDamage);
-                AbilityResult += string.Format(" wounded enemy {0} at position {1}  by {2} points", Enemies[EnemiesRange].Name, EnemiesRange, AbilityDamage);
+                Enemies[Math.Abs(DamageRange - position)].GetHit(AbilityDamage);
+                AbilityResult += string.Format(" wounded enemy {0} at position {1}  by {2} points", Enemies[DamageRange - position].Name, EnemiesRange, AbilityDamage);
                 return AbilityResult;
             }
 
             if (DamageRange <= AlliesRange)
             {
-                Allies[AlliesRange].GetHit(AbilityDamage);
-                AbilityResult += string.Format(" wounded ally {0} at position {1}  by {2} points", Allies[AlliesRange].Name, AlliesRange, AbilityDamage);
-                return AbilityResult;
-            }
-
-            if (DamageRange == 0)
-            {
-                AbilityResult += " missed";
+                Allies[DamageRange].GetHit(AbilityDamage);
+                AbilityResult += string.Format(" wounded ally {0} at position {1}  by {2} points", Allies[DamageRange].Name, AlliesRange, AbilityDamage);
                 return AbilityResult;
             }
 
