@@ -181,7 +181,7 @@ namespace StackGameVer2
             }
             foreach (IUnit Unit in DeadList)
             {
-                FirstArmy.UnitList.Remove(Unit);
+                SecondArmy.UnitList.Remove(Unit);
             }
         }
     }

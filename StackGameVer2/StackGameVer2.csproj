@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GulyayGorod">
+      <HintPath>..\GulyayGorod.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -55,6 +58,7 @@
     <Compile Include="UnitCreaterFolder\ClericUnitCreater.cs" />
     <Compile Include="UnitCreaterFolder\InfantryUnitCreater.cs" />
     <Compile Include="UnitCreaterFolder\MageUnitCreater.cs" />
+    <Compile Include="UnitCreaterFolder\MyGulyayGorodCreater.cs" />
     <Compile Include="UnitCreaterInterfaceFolder\IUnitCreater.cs" />
     <Compile Include="UnitInterfaseFolder\IAbility.cs" />
     <Compile Include="UnitInterfaseFolder\ICanBeDublacate.cs" />
@@ -62,6 +66,7 @@
     <Compile Include="UnitInterfaseFolder\IUnit.cs" />
     <Compile Include="UnitsFolder\ArcherUnit.cs" />
     <Compile Include="UnitsFolder\ArmorUnit.cs" />
+    <Compile Include="UnitsFolder\MyGulyayGorod.cs" />
     <Compile Include="UnitsFolder\ClericUnit.cs" />
     <Compile Include="UnitsFolder\InfantryUnit.cs" />
     <Compile Include="UnitsFolder\MageUnit.cs" />

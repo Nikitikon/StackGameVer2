@@ -41,7 +41,7 @@ namespace StackGameVer2
 
         public override string ToString()
         {
-            return string.Format("{0}: Health - {1}/12, Armor - {2}, Damage - {3}, Dexterity - {4}", Name, Health, Armor, Damage, Dexterity);
+            return string.Format("{0}: Health - {1}/12, Armor - {2}, Damage - {3}, Dexterity - {4} ", Name, Health, Armor, Damage, Dexterity);
         }
     }
 }

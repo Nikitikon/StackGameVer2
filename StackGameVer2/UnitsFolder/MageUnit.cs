@@ -67,7 +67,7 @@ namespace StackGameVer2
 
         public override string ToString()
         {
-            return string.Format("{0}: Health - {1}/{2}, Armor - {3}, Damage - {4}, Dexterity - {5}, can clone unit", Name, Health, MaxHealth, Armor, Damage, Dexterity);
+            return string.Format("{0}: Health - {1}/{2}, Armor - {3}, Damage - {4}, Dexterity - {5}, can clone unit ", Name, Health, MaxHealth, Armor, Damage, Dexterity);
         }
     }
 }
