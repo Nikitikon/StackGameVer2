@@ -44,9 +44,14 @@ namespace StackGameVer2
         public string DoAbility(List<IUnit> Allies, List<IUnit> Enemies, int position)
         {
             string AbilityResult = "Mage at position " + position;
+                
 
             for (int i = Range; i > -Range; i--)
             {
+                if (Allies.Count >= (position + i) || position + i < 0)
+                {
+                    continue;
+                }
                 if (Allies[position + i] is ICanBeDublacate)
                 {
                     ICanBeDublacate CloneUnit = Allies[position + i] as ICanBeDublacate;

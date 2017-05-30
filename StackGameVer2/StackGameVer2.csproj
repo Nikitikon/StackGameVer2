@@ -45,6 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArmorUnitFolder\ArmorUnitAdapter.cs" />
+    <Compile Include="ArmorUnitFolder\ArmorUnitHelmet.cs" />
+    <Compile Include="ArmorUnitFolder\ArmorUnitHorse.cs" />
+    <Compile Include="ArmorUnitFolder\ArmorUnitShield.cs" />
+    <Compile Include="ArmorUnitFolder\ArmorUnitSpear.cs" />
     <Compile Include="ArmyFolder\Army.cs" />
     <Compile Include="ArmyFolder\ArmyCreater.cs" />
     <Compile Include="ArmyFolder\ComputerArmy.cs" />

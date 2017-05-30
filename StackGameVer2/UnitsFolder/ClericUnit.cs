@@ -45,11 +45,11 @@ namespace StackGameVer2
         {
             string AbilityResult = "Cleric at position " + position;
 
-            for (int i = Range; i > -Range + 1; i--)
+            for (int i = Range; i > -Range; i--)
             {
-                if (i + position >= Allies.Count)
+                if (i + position >= Allies.Count || position + i < 0)
                 {
-                    break;
+                    continue;
                 }
                 if (Allies[position + i] is ICanBeHealed)
                 {

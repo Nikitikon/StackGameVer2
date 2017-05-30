@@ -55,7 +55,11 @@ namespace StackGameVer2
 
             Random RandomRange = new Random();
             int DamageRange = RandomRange.Next(0, Range + 1);
-
+            if (DamageRange - position >= Enemies.Count)
+            {
+                AbilityResult += " did not shoot.";
+                return AbilityResult;
+            }
             if (DamageRange == 0)
             {
                 AbilityResult += " missed";
@@ -65,14 +69,14 @@ namespace StackGameVer2
             if (DamageRange > AlliesRange)
             {
                 Enemies[Math.Abs(DamageRange - position)].GetHit(AbilityDamage);
-                AbilityResult += string.Format(" wounded enemy {0} at position {1}  by {2} points", Enemies[DamageRange - position].Name, EnemiesRange, AbilityDamage);
+                AbilityResult += string.Format(" wounded enemy {0} at position {1}  by {2} points", Enemies[DamageRange - position].Name, DamageRange - position, AbilityDamage);
                 return AbilityResult;
             }
 
             if (DamageRange <= AlliesRange)
             {
                 Allies[DamageRange].GetHit(AbilityDamage);
-                AbilityResult += string.Format(" wounded ally {0} at position {1}  by {2} points", Allies[DamageRange].Name, AlliesRange, AbilityDamage);
+                AbilityResult += string.Format(" wounded ally {0} at position {1}  by {2} points", Allies[DamageRange].Name, DamageRange, AbilityDamage);
                 return AbilityResult;
             }
 

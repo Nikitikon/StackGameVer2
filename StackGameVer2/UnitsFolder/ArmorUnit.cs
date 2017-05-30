@@ -14,9 +14,9 @@ namespace StackGameVer2
 
         public int Damage { get; private set; } = 6;
 
-        public int Dexterity { get; private set; } = 2;
+        public int Dexterity { get; private set; } = 3;
 
-        public int Health { get; private set; } = 12;
+        public int Health { get; protected set; } = 12;
 
         public int Initiative { get; private set; } = 3;
 

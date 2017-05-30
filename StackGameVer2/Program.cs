@@ -15,10 +15,9 @@ namespace StackGameVer2
             F.CreateArmy();
             S.CreateArmy();
             Engine E = Engine.getInstance(F, S);
-
             while (E.NextTurn())
             {
-
+                
             }
         }
     }
