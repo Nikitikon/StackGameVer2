@@ -17,24 +17,15 @@ namespace StackGameVer2
 
         private Engine() {}
 
-        private Engine(Army FirstArmy, Army SecondArmy)
+        public void SetArmy(Army FisrstArmy, Army SecondArmy)
         {
-            this.FirstArmy = FirstArmy;
-            this.SecondArmy = SecondArmy;
-        }
-
-
-        public static Engine getInstance(Army FirstArmy, Army SecondArmy)
-        {
-            if (instance == null)
+            if (FirstArmy == null || SecondArmy == null)
             {
-                lock (syncRoot)
-                {
-                    if (instance == null)
-                        instance = new Engine(FirstArmy, SecondArmy);
-                }
+                throw new Exception("Неправильно введена армия");
             }
-            return instance;
+
+            this.SecondArmy = SecondArmy;
+            this.FirstArmy = FirstArmy;
         }
 
         public static Engine getInstance()
