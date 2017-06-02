@@ -56,8 +56,10 @@
     <Compile Include="ArmyFolder\UserArmy.cs" />
     <Compile Include="ArmyInterfaceFolder\IArmyCreater.cs" />
     <Compile Include="EngineFolder\Engine.cs" />
+    <Compile Include="EngineFolder\IEngine.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProxyFolder\EngineProxy.cs" />
     <Compile Include="UnitCreaterFolder\ArcherUnitCreater.cs" />
     <Compile Include="UnitCreaterFolder\ArmorUnitCreater.cs" />
     <Compile Include="UnitCreaterFolder\ClericUnitCreater.cs" />

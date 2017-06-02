@@ -11,7 +11,7 @@ namespace StackGameVer2
     {
         GulyayGorod GG = new GulyayGorod(20,0,15);
 
-        public int Armor { get; private set; } = 25;
+        public int Armor { get; private set; } = 12;
 
         public int Cost {
             get

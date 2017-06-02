@@ -22,16 +22,19 @@ namespace StackGameVer2
             //    a.DoAbility(u.UnitList, null, 1);
             //}
 
-            ComputerArmy F = new ComputerArmy(1000);
-            ComputerArmy S = new ComputerArmy(1000);
+            ComputerArmy F = new ComputerArmy(100);
+            ComputerArmy S = new ComputerArmy(100);
             F.CreateArmy();
             S.CreateArmy();
-            Engine E = Engine.getInstance();
+            IEngine E = EngineProxy.getInstance();
             E.SetArmy(F, S);
-            while (E.NextTurn())
+            bool flag = true;
+            while (flag)
             {
-
+                E.NextTurn(out flag);
             }
+
+            Console.Read();
         }
     }
 }
