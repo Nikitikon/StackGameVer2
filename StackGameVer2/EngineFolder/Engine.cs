@@ -17,7 +17,7 @@ namespace StackGameVer2
 
         private Engine() {}
 
-        public void SetArmy(Army FisrstArmy, Army SecondArmy)
+        public void SetArmy(Army FirstArmy, Army SecondArmy)
         {
             if (FirstArmy == null || SecondArmy == null)
             {

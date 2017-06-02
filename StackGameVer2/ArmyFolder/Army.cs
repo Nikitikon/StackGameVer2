@@ -11,7 +11,8 @@ namespace StackGameVer2
         public List<IUnit> UnitList { get; protected set; }
         public int Money { get; protected set; } = 100;
         protected int MoneyMax = 0; 
-        protected IArmyCreater _ArmyCreater;
+        protected ArmyCreater _ArmyCreater = new ArmyCreater();
+        private Dictionary<int, string> UnitDic;
 
 
         public Army(int Money)
@@ -24,6 +25,14 @@ namespace StackGameVer2
 
             MoneyMax = Money;
             this.Money = Money;
+
+            UnitDic = new Dictionary<int, string>();
+            UnitDic.Add(1, "Archer");
+            UnitDic.Add(2, "Armor");
+            UnitDic.Add(3, "Cleric");
+            UnitDic.Add(4, "Infantry");
+            UnitDic.Add(5, "Mage");
+            UnitDic.Add(6, "Gulyay-Gorod");
         }
 
         public abstract int CreateArmy();
@@ -47,24 +56,20 @@ namespace StackGameVer2
 
         protected void ArmyAlgoritmCreater()
         {
+            Random r = new Random();
             while (true)
             {
-                IUnit Unit;
-                IUnitCreater creater;
+                int key = r.Next(1, 7);
+                IUnit Unit = _ArmyCreater.Create(UnitDic[key]);
                 bool flag = true;
-                var types = GetType().Assembly.GetTypes().Where(t => typeof(IUnitCreater).IsAssignableFrom(t) && !t.IsAbstract).ToList();
-
-                foreach (Type type in types)
+                
+                if (Money - Unit.Cost >= 0)
                 {
-                    creater = (IUnitCreater)Activator.CreateInstance(type);
-                    Unit = _ArmyCreater.Create(creater.Name);
-                    if (Money - Unit.Cost >= 0)
-                    {
-                        Money -= Unit.Cost;
-                        UnitList.Add(Unit);
-                        flag = false;
-                    }
+                    Money -= Unit.Cost;
+                    UnitList.Add(Unit);
+                    flag = false;
                 }
+                
                 if (flag)
                 {
                     break;
