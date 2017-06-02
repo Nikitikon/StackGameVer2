@@ -43,41 +43,40 @@ namespace StackGameVer2
 
             if (position + 1 < Allies.Count)
             {
-                if (Allies[position + 1] is ArmorUnit)
+                if (Allies[position + 1] is ArmorUnit || Allies[position + 1] is ArmorUnitAdapter)
                     ArmorUnitPosition = position + 1;
             }
 
             if (position - 1 > 0)
             {
-                if (Allies[position - 1] is ArmorUnit)
+                if (Allies[position - 1] is ArmorUnit || Allies[position - 1] is ArmorUnitAdapter)
                     ArmorUnitPosition = position - 1;
             }
 
             if (ArmorUnitPosition != 0 && r.Next(1, 21) == 20)
             {
                 AbilityResult += string.Format(" equipment Armor Unit at position {0}", ArmorUnitPosition);
-                ArmorUnit Unit = Allies[ArmorUnitPosition] as ArmorUnit;
-                if(!(Unit is ArmorUnitAdapter))
+                if(!(Allies[ArmorUnitPosition] is ArmorUnitAdapter))
                 {
-                    Allies[ArmorUnitPosition] = new ArmorUnitShield(Unit);
+                    Allies[ArmorUnitPosition] = new ArmorUnitShield(Allies[ArmorUnitPosition]);
                     return AbilityResult + " Shield";
                 }
 
-                if (Unit is ArmorUnitShield)
+                if (Allies[ArmorUnitPosition] is ArmorUnitShield)
                 {
-                    Allies[ArmorUnitPosition] = new ArmorUnitHelmet(Unit);
+                    Allies[ArmorUnitPosition] = new ArmorUnitHelmet(Allies[ArmorUnitPosition]);
                     return AbilityResult + " Helmet";
                 }
 
-                if (Unit is ArmorUnitHelmet)
+                if (Allies[ArmorUnitPosition] is ArmorUnitHelmet)
                 {
-                    Allies[ArmorUnitPosition] = new ArmorUnitHorse(Unit);
+                    Allies[ArmorUnitPosition] = new ArmorUnitHorse(Allies[ArmorUnitPosition]);
                     return AbilityResult + " Horse";
                 }
 
-                if (Unit is ArmorUnitHorse)
+                if (Allies[ArmorUnitPosition] is ArmorUnitHorse)
                 {
-                    Allies[ArmorUnitPosition] = new ArmorUnitSpear(Unit);
+                    Allies[ArmorUnitPosition] = new ArmorUnitSpear(Allies[ArmorUnitPosition]);
                     return AbilityResult + " Spear";
                 }
             }

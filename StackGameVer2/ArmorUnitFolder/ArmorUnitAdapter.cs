@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace StackGameVer2
 {
-    abstract class ArmorUnitAdapter : ArmorUnit
+    abstract class ArmorUnitAdapter : IUnit, ICanBeDublacate
     {
-        protected ArmorUnit Unit;
+        protected IUnit Unit;
 
-        public ArmorUnitAdapter(ArmorUnit Unit)
+        public ArmorUnitAdapter(IUnit Unit)
         {
             this.Unit = Unit;
+            ;
         }
 
         public abstract int Armor { get; }

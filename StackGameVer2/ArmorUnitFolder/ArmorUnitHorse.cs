@@ -8,7 +8,7 @@ namespace StackGameVer2
 {
     class ArmorUnitHorse : ArmorUnitAdapter
     {
-        public ArmorUnitHorse(ArmorUnit Unit) : base(Unit)
+        public ArmorUnitHorse(IUnit Unit) : base(Unit)
         {
         }
 
@@ -49,8 +49,8 @@ namespace StackGameVer2
 
         public override IUnit Clone()
         {
-            IUnit unit = Unit.Clone();
-            ArmorUnitHorse AUS = new ArmorUnitHorse((ArmorUnit)unit);
+            ICanBeDublacate dubl = Unit as ICanBeDublacate;
+            ArmorUnitHelmet AUS = new ArmorUnitHelmet(dubl.Clone());
             return AUS;
         }
 

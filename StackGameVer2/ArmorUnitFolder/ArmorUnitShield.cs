@@ -8,7 +8,7 @@ namespace StackGameVer2
 {
     class ArmorUnitShield : ArmorUnitAdapter
     {
-        public ArmorUnitShield(ArmorUnit Unit) : base(Unit)
+        public ArmorUnitShield(IUnit Unit) : base(Unit)
         {
         }
 
@@ -49,8 +49,8 @@ namespace StackGameVer2
 
         public override IUnit Clone()
         {
-            IUnit unit = Unit.Clone();
-            ArmorUnitShield AUS = new ArmorUnitShield((ArmorUnit)unit);
+            ICanBeDublacate dubl = Unit as ICanBeDublacate;
+            ArmorUnitHelmet AUS = new ArmorUnitHelmet(dubl.Clone());
             return AUS;
         }
 

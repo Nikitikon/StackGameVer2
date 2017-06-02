@@ -10,15 +10,27 @@ namespace StackGameVer2
     {
         static void Main(string[] args)
         {
-            ComputerArmy F = new ComputerArmy(1000);
-            ComputerArmy S = new ComputerArmy(1000);
-            F.CreateArmy();
-            S.CreateArmy();
-            Engine E = Engine.getInstance(F, S);
-            while (E.NextTurn())
+            UserArmy u = new UserArmy(100);
+            u.AddUnit("Armor");
+            u.AddUnit("Infantry");
+            u.AddUnit("Armor");
+            IAbility a = u.UnitList[1] as IAbility;
+
+
+            while (true)
             {
-                
+                a.DoAbility(u.UnitList, null, 1);
             }
+
+            //ComputerArmy F = new ComputerArmy(1000);
+            //ComputerArmy S = new ComputerArmy(1000);
+            //F.CreateArmy();
+            //S.CreateArmy();
+            //Engine E = Engine.getInstance(F, S);
+            //while (E.NextTurn())
+            //{
+                
+            //}
         }
     }
 }
