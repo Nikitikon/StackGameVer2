@@ -6,10 +6,18 @@ using System.Threading.Tasks;
 
 namespace StackGameVer2
 {
-    class ComandForEngine
+    class ComandForEngine : IComand
     {
         private Engine engine = Engine.getInstance();
 
+        public void ReDo()
+        {
+            engine.ReDo();
+        }
 
+        public void UnDo()
+        {
+            engine.UnDo();
+        }
     }
 }

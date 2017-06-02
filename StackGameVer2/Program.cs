@@ -22,8 +22,8 @@ namespace StackGameVer2
             //    a.DoAbility(u.UnitList, null, 1);
             //}
 
-            ComputerArmy F = new ComputerArmy(100);
-            ComputerArmy S = new ComputerArmy(100);
+            ComputerArmy F = new ComputerArmy(1000);
+            ComputerArmy S = new ComputerArmy(1000);
             F.CreateArmy();
             S.CreateArmy();
             IEngine E = EngineProxy.getInstance();
@@ -32,6 +32,7 @@ namespace StackGameVer2
             while (flag)
             {
                 E.NextTurn(out flag);
+                //Console.Read();
             }
 
             Console.Read();

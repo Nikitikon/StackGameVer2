@@ -55,6 +55,12 @@
     <Compile Include="ArmyFolder\ComputerArmy.cs" />
     <Compile Include="ArmyFolder\UserArmy.cs" />
     <Compile Include="ArmyInterfaceFolder\IArmyCreater.cs" />
+    <Compile Include="ComandFile\ComandForEngine.cs" />
+    <Compile Include="ComandFile\IComand.cs" />
+    <Compile Include="ObservFolder\BeebDeadLog.cs" />
+    <Compile Include="ObservFolder\FileDeadLog.cs" />
+    <Compile Include="ObservFolder\IObservable.cs" />
+    <Compile Include="ObservFolder\IObserver.cs" />
     <Compile Include="ProxyFolder\ArcherUnitProxy.cs" />
     <Compile Include="ProxyFolder\ClericUnitProxy.cs" />
     <Compile Include="EngineFolder\Engine.cs" />

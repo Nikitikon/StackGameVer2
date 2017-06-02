@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,17 +53,24 @@ namespace StackGameVer2
                 result = engine.NextTurn(out flag);
             }
             catch (Exception e) { result = e.Message; }
-            Console.WriteLine(result);
+            using (StreamWriter sw = new StreamWriter("GameLog.txt", true, Encoding.Default))
+            {
+                sw.WriteLine(result);
+            }
             return result;
         }
 
         public void SetArmy(Army UserArmy, Army ComputerArmy)
         {
+            using (StreamWriter sw = new StreamWriter("DeadLog.txt", false, Encoding.Default))
+            {
+                sw.WriteLine(string.Empty);
+            }
             try
             {
                 engine.SetArmy(UserArmy, ComputerArmy);
             }
-            catch (Exception e) { Console.WriteLine(e.Message); }
+            catch (Exception e) { throw new Exception(e.Message); }
         }
     }
 }

@@ -6,19 +6,25 @@ using System.Threading.Tasks;
 
 namespace StackGameVer2
 {
-    class Engine : IEngine
+    class Engine : IEngine, IObservable
     {
         private static Engine instance;
         private static object syncRoot = new Object();
         public Army UserArmy { get; private set; }
         public Army ComputerArmy { get; private set; }
-        private int counter = 0;
+        private int counter;
+        private int TurnCounter;
         private int FirstArmyCount;
         private int SecondArmyCount;
-        private StringBuilder TurnResul = new StringBuilder();
+        private List<IObserver> observers;
+        private Dictionary<int, List<Army>> Turn;
 
-
-        private Engine() {}
+        private Engine()
+        {
+            counter = 0; observers = new List<IObserver>();
+            AddObserver(new FileDeadLog());
+            AddObserver(new BeebDeadLog());
+        }
 
         public void SetArmy(Army UserArmy, Army ComputerArmy)
         {
@@ -31,6 +37,8 @@ namespace StackGameVer2
             this.UserArmy = UserArmy;
             FirstArmyCount = UserArmy.UnitList.Count;
             SecondArmyCount = ComputerArmy.UnitList.Count;
+            TurnCounter = 0;
+            Turn = new Dictionary<int, List<Army>>();
         }
 
         public static Engine getInstance()
@@ -54,15 +62,38 @@ namespace StackGameVer2
                 throw new Exception("Армии еще не созданы");
                 flag = false;
             }
+
+            TurnCounter++;
+
+            flag = true;
+            counter = 0;
+            string result = "Новый Ход "+ TurnCounter +"\n\n"+Fight();
+            result += "\n\n" + Abbiliti() + "\nКонец Хода\n";
+            RemoveTheDead();
+            SafeState();
+            string win = ChoseWiner(out flag);
+            if (!flag)
+            {
+                throw new Exception(win);
+            }
+            FirstArmyCount = UserArmy.UnitList.Count;
+            SecondArmyCount = ComputerArmy.UnitList.Count;
+            return result;
+        }
+
+        private string ChoseWiner(out bool flag)
+        {
+            string result = null;
+            flag = true;
             if (FirstArmyCount != 0 && SecondArmyCount == 0)
             {
-                throw new Exception("Вы выйграли");
+                result = "Вы выйграли";
                 flag = false;
             }
 
             if (FirstArmyCount == 0 && SecondArmyCount != 0)
             {
-                throw new Exception("Вы проиграли");
+                result = "Вы проиграли";
                 flag = false;
             }
 
@@ -74,18 +105,23 @@ namespace StackGameVer2
 
             if (counter == 10)
             {
-                throw new Exception("Ничья");
+                result = "Ничья";
                 flag = false;
             }
 
-            flag = true;
-            counter = 0;
-            string result = "Новый Ход\n\n"+Fight();
-            result += "\n\n" + Abbiliti() + "\nКонец Хода\n";
-            RemoveTheDead();
-            FirstArmyCount = UserArmy.UnitList.Count;
-            SecondArmyCount = ComputerArmy.UnitList.Count;
             return result;
+        }
+
+        private void SafeState()
+        {
+            List<Army> LA = new List<Army>();
+            LA.Add(UserArmy);
+            LA.Add(ComputerArmy);
+            for (int i = Turn.Count; i >= TurnCounter; i--)
+            {
+                Turn.Remove(i);
+            }
+            Turn.Add(TurnCounter, LA);
         }
 
         private string Fight ()
@@ -217,9 +253,11 @@ namespace StackGameVer2
             {
                 if (Unit.Health <= 0)
                 {
+                    string deadUnit = string.Format("Ход {0} Ваша Армия: Юнит {1} на позиции {2}", TurnCounter, Unit.Name, UserArmy.UnitList.IndexOf(Unit));
+                    NotifyObservers(deadUnit);
                     DeadList.Add(Unit);
                 }
-            }
+            } 
 
             foreach (IUnit Unit in DeadList)
             {
@@ -232,6 +270,8 @@ namespace StackGameVer2
             {
                 if (Unit.Health <= 0)
                 {
+                    string deadUnit = string.Format("Ход {0} Армия Противника: Юнит {1} на позиции {2}", TurnCounter, Unit.Name, ComputerArmy.UnitList.IndexOf(Unit));
+                    NotifyObservers(deadUnit);
                     DeadList.Add(Unit);
                 }
             }
@@ -239,6 +279,46 @@ namespace StackGameVer2
             {
                 ComputerArmy.UnitList.Remove(Unit);
             }
+        }
+
+        public void AddObserver(IObserver o)
+        {
+            observers.Add(o);
+        }
+
+        public void RemoveObserver(IObserver o)
+        {
+            observers.Remove(o);
+        }
+
+        public void NotifyObservers(object obj)
+        {
+            foreach (IObserver observer in observers)
+                observer.Update(obj); 
+        }
+
+        public void UnDo()
+        {
+            if(TurnCounter == 1)
+            {
+                throw new Exception("Вы в начале");
+            }
+
+            TurnCounter--;
+            UserArmy = Turn[TurnCounter][0];
+            ComputerArmy = Turn[TurnCounter][1];
+        }
+
+        public void ReDo()
+        {
+            if (TurnCounter == Turn.Count)
+            {
+                throw new Exception("Вы в конце");
+            }
+
+            TurnCounter++;
+            UserArmy = Turn[TurnCounter][0];
+            ComputerArmy = Turn[TurnCounter][1];
         }
     }
 }
