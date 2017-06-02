@@ -191,17 +191,6 @@ namespace StackGameVer2
                 result += "противник убит";
             }
 
-            if (UnitFlag == 1)
-            {
-                 UserArmy.UnitList[0] = AttackingUnit;
-                 ComputerArmy.UnitList[0] = DefendingUnit;
-            }
-            else
-            {
-                UserArmy.UnitList[0] = DefendingUnit;
-                ComputerArmy.UnitList[0] = AttackingUnit;
-            }
-
             RemoveTheDead();
 
             return result;
@@ -320,5 +309,7 @@ namespace StackGameVer2
             UserArmy = Turn[TurnCounter][0];
             ComputerArmy = Turn[TurnCounter][1];
         }
+
+
     }
 }

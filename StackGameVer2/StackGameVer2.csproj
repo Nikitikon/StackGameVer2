@@ -57,6 +57,10 @@
     <Compile Include="ArmyInterfaceFolder\IArmyCreater.cs" />
     <Compile Include="ComandFile\ComandForEngine.cs" />
     <Compile Include="ComandFile\IComand.cs" />
+    <Compile Include="EngineFolder\CombatBuild.cs" />
+    <Compile Include="EngineFolder\LineCombatBuild.cs" />
+    <Compile Include="EngineFolder\RankCombatBuild.cs" />
+    <Compile Include="EngineFolder\TurtelCombatBuild.cs" />
     <Compile Include="ObservFolder\BeebDeadLog.cs" />
     <Compile Include="ObservFolder\FileDeadLog.cs" />
     <Compile Include="ObservFolder\IObservable.cs" />
