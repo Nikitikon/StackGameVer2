@@ -80,8 +80,8 @@ namespace StackGameVer2
 
             flag = true;
             counter = 0;
-            string result = Fight();
-            Abbiliti();
+            string result = "Новый Ход\n\n"+Fight();
+            result += "\n\n" + Abbiliti() + "\nКонец Хода\n";
             RemoveTheDead();
             FirstArmyCount = UserArmy.UnitList.Count;
             SecondArmyCount = ComputerArmy.UnitList.Count;
@@ -168,15 +168,19 @@ namespace StackGameVer2
 
             RemoveTheDead();
 
-            return result + "\nХод окончен\n\n";
+            return result;
         }
 
-        private void Abbiliti()
+        private string Abbiliti()
         {
             int FirstArmyCount = UserArmy.UnitList.Count;
             int SecondArmyCount = ComputerArmy.UnitList.Count;
             int Count = FirstArmyCount > SecondArmyCount ? FirstArmyCount : SecondArmyCount;
             IAbility UnitWithAbility;
+
+            string result = "Фаза абилити\n";
+            string UserStr = "Ваша армия: ";
+            string ComputerStr = "\nАрмия противника: ";
 
             for (int i = 1; i < Count; i++)
             {
@@ -185,7 +189,7 @@ namespace StackGameVer2
                     if (UserArmy.UnitList[i] is IAbility)
                     {
                         UnitWithAbility = UserArmy.UnitList[i] as IAbility;
-                        UnitWithAbility.DoAbility(UserArmy.UnitList, ComputerArmy.UnitList, i);
+                        UserStr+= UnitWithAbility.DoAbility(UserArmy.UnitList, ComputerArmy.UnitList, i);
                     }
                 }
 
@@ -194,7 +198,7 @@ namespace StackGameVer2
                     if (ComputerArmy.UnitList[i] is IAbility)
                     {
                         UnitWithAbility = ComputerArmy.UnitList[i] as IAbility;
-                        UnitWithAbility.DoAbility(ComputerArmy.UnitList, UserArmy.UnitList, i);
+                        ComputerStr+= UnitWithAbility.DoAbility(ComputerArmy.UnitList, UserArmy.UnitList, i);
                     }
                 }
 
@@ -202,6 +206,8 @@ namespace StackGameVer2
                 FirstArmyCount = UserArmy.UnitList.Count;
                 SecondArmyCount = ComputerArmy.UnitList.Count;
             }
+
+            return result + UserStr + ComputerStr;
         }
 
         private void RemoveTheDead()

@@ -57,13 +57,13 @@ namespace StackGameVer2
                     if (HealetUnit.MaxHealth > Allies[position + i].Health)
                     {
                         Allies[position + i].GetHit(AbilityDamage);
-                        AbilityResult += string.Format(" cured the {0} at position {1} by {2} points", Allies[position + i].Name, position + i, AbilityDamage);
+                        AbilityResult += string.Format(" cured the {0} at position {1} by {2} points\n", Allies[position + i].Name, position + i, AbilityDamage);
                         return AbilityResult;
                     }
                 }
             }
 
-            return AbilityResult + string.Format(" can't heal");
+            return AbilityResult + string.Format(" can't heal\n");
         }
 
         public override string ToString()

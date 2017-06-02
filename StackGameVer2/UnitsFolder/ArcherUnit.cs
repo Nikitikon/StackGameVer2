@@ -49,7 +49,7 @@ namespace StackGameVer2
 
             if ((double)AlliesRange / Range >= 0.5)
             {
-                AbilityResult += " did not shoot.";
+                AbilityResult += " did not shoot.\n";
                 return AbilityResult;
             }
 
@@ -57,26 +57,26 @@ namespace StackGameVer2
             int DamageRange = RandomRange.Next(0, Range + 1);
             if (DamageRange - position >= Enemies.Count)
             {
-                AbilityResult += " did not shoot.";
+                AbilityResult += " did not shoot.\n";
                 return AbilityResult;
             }
             if (DamageRange == 0)
             {
-                AbilityResult += " missed";
+                AbilityResult += " missed\n";
                 return AbilityResult;
             }
 
             if (DamageRange > AlliesRange)
             {
                 Enemies[Math.Abs(DamageRange - position)].GetHit(AbilityDamage);
-                AbilityResult += string.Format(" wounded enemy {0} at position {1}  by {2} points", Enemies[DamageRange - position].Name, DamageRange - position, AbilityDamage);
+                AbilityResult += string.Format(" wounded enemy {0} at position {1}  by {2} points\n", Enemies[DamageRange - position].Name, DamageRange - position, AbilityDamage);
                 return AbilityResult;
             }
 
             if (DamageRange <= AlliesRange)
             {
                 Allies[DamageRange].GetHit(AbilityDamage);
-                AbilityResult += string.Format(" wounded ally {0} at position {1}  by {2} points", Allies[DamageRange].Name, DamageRange, AbilityDamage);
+                AbilityResult += string.Format(" wounded ally {0} at position {1}  by {2} points\n", Allies[DamageRange].Name, DamageRange, AbilityDamage);
                 return AbilityResult;
             }
 
@@ -85,7 +85,7 @@ namespace StackGameVer2
 
         public override string ToString()
         {
-            return string.Format("{0}: Health - {1}/{2}, Armor - {3}, Damage - {4}, Dexterity - {5}, can shoot {6} times damaged ", Name, Health, MaxHealth, Armor, Damage, Dexterity, AbilityDamage);
+            return string.Format("{0}: Health - {1}/{2}, Armor - {3}, Damage - {4}, Dexterity - {5}, can shoot {6} times damaged\n", Name, Health, MaxHealth, Armor, Damage, Dexterity, AbilityDamage);
         }
 
         public IUnit Clone()

@@ -55,8 +55,12 @@
     <Compile Include="ArmyFolder\ComputerArmy.cs" />
     <Compile Include="ArmyFolder\UserArmy.cs" />
     <Compile Include="ArmyInterfaceFolder\IArmyCreater.cs" />
+    <Compile Include="ProxyFolder\ArcherUnitProxy.cs" />
+    <Compile Include="ProxyFolder\ClericUnitProxy.cs" />
     <Compile Include="EngineFolder\Engine.cs" />
     <Compile Include="EngineFolder\IEngine.cs" />
+    <Compile Include="ProxyFolder\InfantryUnitProxy.cs" />
+    <Compile Include="ProxyFolder\MageUnitProxy.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProxyFolder\EngineProxy.cs" />

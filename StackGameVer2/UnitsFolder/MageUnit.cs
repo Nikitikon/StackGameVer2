@@ -61,13 +61,13 @@ namespace StackGameVer2
                     if (Chance == 20)
                     {
                         Allies.Insert(position - 1, CloneUnit.Clone());
-                        AbilityResult += string.Format(" cloned the {0} at position {1}", Allies[position + i].Name, position + i);
+                        AbilityResult += string.Format(" cloned the {0} at position {1}\n", Allies[position + i].Name, position + i);
                         return AbilityResult;
                     }
                 }
             }
 
-            return AbilityResult + string.Format(" can't clone");
+            return AbilityResult + string.Format(" can't clone\n");
         }
 
         public override string ToString()

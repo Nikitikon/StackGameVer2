@@ -37,7 +37,7 @@ namespace StackGameVer2
 
         public string DoAbility(List<IUnit> Allies, List<IUnit> Enemies, int position)
         {
-            string AbilityResult = "Infantry Unit at position " + position;
+            string AbilityResult = "Infantry Unit на позиции " + position;
             int ArmorUnitPosition = 0;
             Random r = new Random();
 
@@ -55,33 +55,35 @@ namespace StackGameVer2
 
             if (ArmorUnitPosition != 0 && r.Next(1, 21) == 20)
             {
-                AbilityResult += string.Format(" equipment Armor Unit at position {0}", ArmorUnitPosition);
+                AbilityResult += string.Format(" экипирует Armor Unit на позиции {0}", ArmorUnitPosition);
                 if(!(Allies[ArmorUnitPosition] is ArmorUnitAdapter))
                 {
                     Allies[ArmorUnitPosition] = new ArmorUnitShield(Allies[ArmorUnitPosition]);
-                    return AbilityResult + " Shield";
+                    return AbilityResult + " Щитом";
                 }
 
                 if (Allies[ArmorUnitPosition] is ArmorUnitShield)
                 {
                     Allies[ArmorUnitPosition] = new ArmorUnitHelmet(Allies[ArmorUnitPosition]);
-                    return AbilityResult + " Helmet";
+                    return AbilityResult + " Шлемом";
                 }
 
                 if (Allies[ArmorUnitPosition] is ArmorUnitHelmet)
                 {
                     Allies[ArmorUnitPosition] = new ArmorUnitHorse(Allies[ArmorUnitPosition]);
-                    return AbilityResult + " Horse";
+                    return AbilityResult + " Лошадью";
                 }
 
                 if (Allies[ArmorUnitPosition] is ArmorUnitHorse)
                 {
                     Allies[ArmorUnitPosition] = new ArmorUnitSpear(Allies[ArmorUnitPosition]);
-                    return AbilityResult + " Spear";
+                    return AbilityResult + " Копьем";
                 }
+
+
             }
 
-            return AbilityResult + string.Format(" can't equip");
+            return AbilityResult + string.Format(" не может экипировать");
         }
 
         public bool GetHit(int hit)
