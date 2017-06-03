@@ -12,5 +12,6 @@ namespace StackGameVer2
         Army UserArmy { get; }
         Army ComputerArmy { get; }
         void SetArmy(Army UserArmy, Army ComputerArmy);
+        void ChangeCombutBuild(int num);
     }
 }

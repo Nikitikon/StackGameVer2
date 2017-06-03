@@ -91,5 +91,24 @@ namespace StackGameVer2
 
             return Unit;
         }
+
+        public override void RemoveTheDead(int TurnCounter)
+        {
+            List<IUnit> DeadList = new List<IUnit>();
+            foreach (IUnit Unit in UnitList)
+            {
+                if (Unit.Health <= 0)
+                {
+                    string deadUnit = string.Format("Ход {0} Ваша Армия: Юнит {1} на позиции {2}", TurnCounter, Unit.Name, UnitList.IndexOf(Unit));
+                    NotifyObservers(deadUnit);
+                    DeadList.Add(Unit);
+                }
+            }
+
+            foreach (IUnit Unit in DeadList)
+            {
+                UnitList.Remove(Unit);
+            }
+        }
     }
 }

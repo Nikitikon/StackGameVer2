@@ -47,6 +47,11 @@ namespace StackGameVer2
             int EnemiesRange = Math.Abs(Range - position);
             int AlliesRange = position;
 
+            if (Enemies == null)
+            {
+                return "";
+            }
+
             if ((double)AlliesRange / Range >= 0.5)
             {
                 AbilityResult += " did not shoot.\n";

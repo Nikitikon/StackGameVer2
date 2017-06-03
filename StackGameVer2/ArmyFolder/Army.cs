@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace StackGameVer2
 {
-     abstract class Army
+     abstract class Army : IObservable
     {
         public List<IUnit> UnitList { get; protected set; }
         public int Money { get; protected set; } = 100;
         protected int MoneyMax = 0; 
         protected ArmyCreater _ArmyCreater = new ArmyCreater();
         private Dictionary<int, string> UnitDic;
+        private List<IObserver> observers;
 
 
         public Army(int Money)
@@ -33,6 +34,9 @@ namespace StackGameVer2
             UnitDic.Add(4, "Infantry");
             UnitDic.Add(5, "Mage");
             UnitDic.Add(6, "Gulyay-Gorod");
+            observers = new List<IObserver>();
+            AddObserver(new FileDeadLog());
+            AddObserver(new BeebDeadLog());
         }
 
         public abstract int CreateArmy();
@@ -77,6 +81,8 @@ namespace StackGameVer2
             }
         }
 
+        public abstract void RemoveTheDead(int TurnCounter);
+
         public string UnitInfo (int Position)
         {
             if (UnitList == null)
@@ -85,6 +91,22 @@ namespace StackGameVer2
             }
 
             return UnitList[Position - 1].ToString();
+        }
+
+        public void AddObserver(IObserver o)
+        {
+            observers.Add(o);
+        }
+
+        public void RemoveObserver(IObserver o)
+        {
+            observers.Remove(o);
+        }
+
+        public void NotifyObservers(object obj)
+        {
+            foreach (IObserver observer in observers)
+                observer.Update(obj);
         }
     }
 }

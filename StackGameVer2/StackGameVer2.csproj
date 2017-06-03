@@ -91,6 +91,7 @@
     <Compile Include="UnitsFolder\ClericUnit.cs" />
     <Compile Include="UnitsFolder\InfantryUnit.cs" />
     <Compile Include="UnitsFolder\MageUnit.cs" />
+    <Compile Include="UserInterfaseFolder\UserInterface.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

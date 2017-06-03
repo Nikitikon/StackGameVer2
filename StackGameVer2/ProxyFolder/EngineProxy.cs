@@ -55,14 +55,15 @@ namespace StackGameVer2
             catch (Exception e) { result = e.Message; }
             using (StreamWriter sw = new StreamWriter("GameLog.txt", true, Encoding.Default))
             {
-                sw.WriteLine(result);
+                sw.WriteLine(result + "\n");
+                sw.Flush();
             }
             return result;
         }
 
         public void SetArmy(Army UserArmy, Army ComputerArmy)
         {
-            using (StreamWriter sw = new StreamWriter("DeadLog.txt", false, Encoding.Default))
+            using (StreamWriter sw = new StreamWriter("GameLog.txt", false, Encoding.Default))
             {
                 sw.WriteLine(string.Empty);
             }
@@ -71,6 +72,11 @@ namespace StackGameVer2
                 engine.SetArmy(UserArmy, ComputerArmy);
             }
             catch (Exception e) { throw new Exception(e.Message); }
+        }
+
+        public void ChangeCombutBuild(int num)
+        {
+            engine.ChangeCombutBuild(num);
         }
     }
 }

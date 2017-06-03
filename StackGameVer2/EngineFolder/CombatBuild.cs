@@ -80,5 +80,7 @@ namespace StackGameVer2
 
         public abstract string FightStategy(List<IUnit> UserArmy, List<IUnit> ComputerArmy);
 
+        public abstract string AbbilytySrategy(Army UserArmy, Army ComputerArmy, int TurnCounter);
+
     }
 }

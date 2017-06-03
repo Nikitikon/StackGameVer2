@@ -47,7 +47,7 @@ namespace StackGameVer2
                     ArmorUnitPosition = position + 1;
             }
 
-            if (position - 1 > 0)
+            if (position - 1 >= 0)
             {
                 if (Allies[position - 1] is ArmorUnit || Allies[position - 1] is ArmorUnitAdapter)
                     ArmorUnitPosition = position - 1;
