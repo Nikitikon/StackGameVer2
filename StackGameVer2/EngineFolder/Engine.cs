@@ -129,7 +129,7 @@ namespace StackGameVer2
 
         public void UnDo()
         {
-            if(TurnCounter == 1)
+            if(TurnCounter == 1 || TurnCounter == 0)
             {
                 throw new Exception("Вы в начале");
             }
